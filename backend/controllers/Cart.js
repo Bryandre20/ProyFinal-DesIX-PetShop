@@ -5,9 +5,12 @@ const { ItemModel } = require('../models/Item');
 
 
 module.exports.validators = {
-    getCart: [],
+    getCart: [
+        body('userId', 'Id of user is required').exists(),
+    ],
     addItemToCart: [
         body('id', 'Id is required').exists(),
+        body('userId', 'Id of user is required').exists(),
     ],
     deleteItemFromCart: [
         body('id', 'Id is required').exists(),
@@ -20,9 +23,10 @@ module.exports.controllers = {
             // Evaluate validations
             const errors = validationResult(req);
             if(!errors.isEmpty()){ return res.json(errors);}
+            const { userId } = req.body;
 
             // Save in database
-            const cart = await CartModel.find(); 
+            const cart = await CartModel.find({ userId: userId }); 
             res.json({ data: cart, model: 'cart', count: cart.length });
         } catch (error) {
             res.json({message: error.message});
@@ -33,11 +37,11 @@ module.exports.controllers = {
             // Evaluate validations
             const errors = validationResult(req);
             if(!errors.isEmpty()){ return res.json(errors);}
-            const { id } = req.body;
+            const { id, userId } = req.body;
 
             // Save in database
             const item = await ItemModel.findById(id);
-            await CartModel.create({ item });
+            await CartModel.create({ item, userId });
             const cart = await CartModel.find(); 
             res.json({ data: cart, model: 'cart', count: cart.length });
         } catch (error) {
