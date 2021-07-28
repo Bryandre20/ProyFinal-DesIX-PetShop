@@ -31,32 +31,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete Item",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/v1/items/60fcd9efc23ffd001e8fd19f",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"v1",
-								"items",
-								"60fcd9efc23ffd001e8fd19f"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create Item",
 					"request": {
 						"method": "POST",
@@ -86,6 +60,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -94,9 +94,21 @@
 			"item": [
 				{
 					"name": "Get Cart",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"60fcd9c4c23ffd001e8fd19a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/api/v1/cart/items/",
 							"protocol": "http",
@@ -122,7 +134,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"60fcda99c23ffd001e8fd1a7\"\r\n}",
+							"raw": "{\r\n    \"id\": \"10\",\r\n    \"userId\": \"60fcd9c4c23ffd001e8fd19a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -153,6 +165,15 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"7\",\r\n    \"userId\": \"60fcd9c4c23ffd001e8fd19a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/api/v1/cart/items/remove/",
 							"protocol": "http",
